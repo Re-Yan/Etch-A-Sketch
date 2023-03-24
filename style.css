@@ -1,0 +1,16 @@
+body {
+  background-color: antiquewhite;
+}
+
+#container {
+  display: grid;
+  grid-template-columns: 100px 100px 100px 100px;
+  grid-template-rows: 100px 100px 100px 100px;
+  gap: 5px;
+  background-color: aquamarine;
+}
+
+.div {
+  border: solid 1px greenyellow;
+  background-color: darkgoldenrod;
+}
