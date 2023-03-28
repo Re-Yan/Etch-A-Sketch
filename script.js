@@ -1,13 +1,37 @@
+const container = document.getElementById("grid-container");
 const button = document.querySelector("button");
-const container = document.getElementById("container");
+const eraser = document.getElementById("eraser");
+const rainbow = document.getElementById("rainbow");
+const clear = document.getElementById("clear");
 
-const divCreator = () => {
-  for (let i = 1; i <= 16; i++) {
-    const newDiv = document.createElement("div");
-    newDiv.classList.add("div");
-    container.appendChild(newDiv);
-    newDiv.innerText = "I'm a newly created div";
+clear.addEventListener("click", function () {
+  console.log(`eraser clicked`);
+});
+
+const createGrid = () => {
+  for (let i = 0; i < 400; i++) {
+    const gridSpace = document.createElement("div");
+    gridSpace.classList.add("grid-items");
+    container.appendChild(gridSpace);
+    gridItems = document.querySelectorAll(".grid-items");
+  }
+};
+createGrid();
+
+//function for generating a random number
+const rand = (min, max) => {
+  return Math.floor(Math.random() * (max - min) + min);
+};
+
+const cursorDrag = (e) => {
+  let randNum = rand(0, 256);
+  e.target.style.backgroundColor = `hsl(${randNum}, 45%, 50%)`;
+};
+
+const eventsTracker = () => {
+  for (let i = 0; i < gridItems.length; i++) {
+    gridItems[i].addEventListener("mouseenter", cursorDrag);
   }
 };
 
-button.addEventListener("click", divCreator);
+eventsTracker();
