@@ -1,12 +1,9 @@
 const container = document.getElementById("grid-container");
-const button = document.querySelector("button");
-const eraser = document.getElementById("eraser");
+let gridItems = document.querySelectorAll(".grid-items");
+const normal = document.getElementById("normal");
+const eraserButton = document.getElementById("eraser");
 const rainbow = document.getElementById("rainbow");
 const clear = document.getElementById("clear");
-
-clear.addEventListener("click", function () {
-  console.log(`eraser clicked`);
-});
 
 const createGrid = () => {
   for (let i = 0; i < 400; i++) {
@@ -18,20 +15,49 @@ const createGrid = () => {
 };
 createGrid();
 
+const normalMode = () => {
+  const black = (e) => {
+    e.target.style.backgroundColor = "black";
+  };
+  for (let i = 0; i < gridItems.length; i++) {
+    gridItems[i].addEventListener("mouseenter", black);
+  }
+};
+
+normal.addEventListener("click", normalMode);
+
+const eraser = () => {
+  const white = (e) => {
+    e.target.style.backgroundColor = "white";
+  };
+
+  for (let i = 0; i < gridItems.length; i++) {
+    gridItems[i].addEventListener("mouseenter", white);
+  }
+};
+eraserButton.addEventListener("click", eraser);
+
 //function for generating a random number
 const rand = (min, max) => {
   return Math.floor(Math.random() * (max - min) + min);
 };
 
-const cursorDrag = (e) => {
-  let randNum = rand(0, 256);
-  e.target.style.backgroundColor = `hsl(${randNum}, 45%, 50%)`;
-};
+// function for rainbow pen
+const rainbowPen = () => {
+  const rainbowGeneration = (e) => {
+    let randNum = rand(0, 256);
+    e.target.style.backgroundColor = `hsl(${randNum}, 45%, 50%)`;
+  };
 
-const eventsTracker = () => {
   for (let i = 0; i < gridItems.length; i++) {
-    gridItems[i].addEventListener("mouseenter", cursorDrag);
+    gridItems[i].addEventListener("mouseenter", rainbowGeneration);
   }
 };
+rainbow.addEventListener("click", rainbowPen);
 
-eventsTracker();
+// function for clearing the board
+clear.addEventListener("click", function () {
+  for (let i = 0; i < gridItems.length; i++) {
+    gridItems[i].style.backgroundColor = "white";
+  }
+});
