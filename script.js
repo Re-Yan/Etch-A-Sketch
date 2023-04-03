@@ -4,9 +4,12 @@ const normal = document.getElementById("normal");
 const eraserButton = document.getElementById("eraser");
 const rainbow = document.getElementById("rainbow");
 const clear = document.getElementById("clear");
+const sliderBar = document.getElementById("slider");
+let progressBar = document.getElementById("progress-bar");
+let rangeValue = Number(document.querySelector(".range-value").textContent);
 
 const createGrid = () => {
-  for (let i = 0; i < 400; i++) {
+  for (let i = 0; i < 100; i++) {
     const gridSpace = document.createElement("div");
     gridSpace.classList.add("grid-items");
     container.appendChild(gridSpace);
@@ -61,3 +64,10 @@ clear.addEventListener("click", function () {
     gridItems[i].style.backgroundColor = "white";
   }
 });
+
+// slider function
+
+const displaySliderValue = (value) => {
+  let gridLabel = document.querySelectorAll(".range-value");
+  for (let i = 0; i < gridLabel.length; i++) gridLabel[i].textContent = value;
+};
