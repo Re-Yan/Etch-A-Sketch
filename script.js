@@ -5,11 +5,17 @@ const eraserButton = document.getElementById("eraser");
 const rainbow = document.getElementById("rainbow");
 const clear = document.getElementById("clear");
 const sliderBar = document.getElementById("slider");
-let progressBar = document.getElementById("progress-bar");
-let rangeValue = Number(document.querySelector(".range-value").textContent);
+const gridDisplay = document.querySelector(".range-value");
+let rangeValue = Number(document.querySelector(".input").value);
+
+const dimension = 600;
+let gridDimension = dimension / rangeValue;
 
 const createGrid = () => {
-  for (let i = 0; i < 100; i++) {
+  gridDimension = dimension / rangeValue;
+  container.style.gridTemplateColumns = `repeat(${rangeValue}, ${gridDimension}px)`;
+  container.style.gridTemplateRows = `repeat(${rangeValue}, ${gridDimension}px)`;
+  for (let i = 0; i < rangeValue ** 2; i++) {
     const gridSpace = document.createElement("div");
     gridSpace.classList.add("grid-items");
     container.appendChild(gridSpace);
@@ -17,6 +23,8 @@ const createGrid = () => {
   }
 };
 createGrid();
+
+let gridlist = Array.from(gridItems);
 
 const normalMode = () => {
   const black = (e) => {
@@ -26,7 +34,6 @@ const normalMode = () => {
     gridItems[i].addEventListener("mouseenter", black);
   }
 };
-
 normal.addEventListener("click", normalMode);
 
 const eraser = () => {
@@ -39,6 +46,12 @@ const eraser = () => {
   }
 };
 eraserButton.addEventListener("click", eraser);
+
+const deleteGrid = () => {
+  while (container.firstChild) {
+    container.lastChild.remove();
+  }
+};
 
 //function for generating a random number
 const rand = (min, max) => {
@@ -66,8 +79,11 @@ clear.addEventListener("click", function () {
 });
 
 // slider function
-
 const displaySliderValue = (value) => {
   let gridLabel = document.querySelectorAll(".range-value");
   for (let i = 0; i < gridLabel.length; i++) gridLabel[i].textContent = value;
+  sliderBar.value = value;
+  rangeValue = Number(gridDisplay.textContent);
+  deleteGrid();
+  createGrid();
 };
