@@ -20,17 +20,19 @@
       <div id="slider-div">
         <input
           type="range"
+          class="input"
           id="slider"
           min="10"
           max="60"
           step="10"
-          value="20"
-          onmousemove="displaySliderValue(this.value)"
+          value="30"
+          onchange="displaySliderValue(this.value)"
         />
-        <span class="range-value">20</span> x
-        <span class="range-value">20</span>
+        <span class="range-value">30</span> x
+        <span class="range-value">30</span>
       </div>
     </div>
+
     <script src="script.js"></script>
   </body>
 </html>
