@@ -11,14 +11,14 @@ body {
 #grid-container {
   display: grid;
 
-  grid-template-columns: repeat(20, 20px);
-  grid-template-rows: repeat(20, 20px);
+  grid-template-columns: repeat(40, 15px);
+  grid-template-rows: repeat(40, 15px);
 
   margin-top: 20px;
   padding-top: 1px;
   padding-left: 1px;
-  width: 400px;
-  height: 400px;
+  width: 600px;
+  height: 600px;
   background-color: black;
 }
 
@@ -33,9 +33,24 @@ body {
 }
 
 #control-panel {
+  display: flex;
+  flex-direction: column;
+  background-color: #b5bdc9;
+  border-radius: 30px;
   margin-top: 50px;
+  padding: 30px 130px;
 }
-
+#button-row {
+  display: flex;
+  margin-bottom: 25px;
+  gap: 10px;
+}
+.buttons {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: aliceblue;
+  border: 0px;
+}
 .black {
   background-color: black;
 }
